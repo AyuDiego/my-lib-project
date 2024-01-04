@@ -3,43 +3,42 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-lib-project": {
+    "showcase": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss",
-          "standalone": false
+          "standalone": true
         },
         "@schematics/angular:directive": {
-          "standalone": false
+          "standalone": true
         },
         "@schematics/angular:pipe": {
-          "standalone": false
+          "standalone": true
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/showcase",
+      "sourceRoot": "projects/showcase/src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-lib-project",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "outputPath": "dist/showcase",
+            "index": "projects/showcase/src/index.html",
+            "main": "projects/showcase/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "projects/showcase/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/showcase/src/favicon.ico",
+              "projects/showcase/src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["projects/showcase/src/styles.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+            "node_modules/primeng/resources/primeng.min.css"],
+            "scripts": [  "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/@popperjs/core/dist/umd/popper.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -58,9 +57,12 @@
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -69,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-lib-project:build:production"
+              "buildTarget": "showcase:build:production"
             },
             "development": {
-              "buildTarget": "my-lib-project:build:development"
+              "buildTarget": "showcase:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,47 +82,57 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "my-lib-project:build"
+            "buildTarget": "showcase:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "projects/showcase/tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/showcase/src/favicon.ico",
+              "projects/showcase/src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "styles": ["projects/showcase/src/styles.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+            "node_modules/primeng/resources/primeng.min.css"],
+            "scripts": [  "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/@popperjs/core/dist/umd/popper.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           }
         }
       }
     },
-    "my-lib": {
+    "@my-lib/ui-sdk": {
       "projectType": "library",
-      "root": "projects/my-lib",
-      "sourceRoot": "projects/my-lib/src",
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": true
+        },
+        "@schematics/angular:directive": {
+          "standalone": true
+        },
+        "@schematics/angular:pipe": {
+          "standalone": true
+        }
+      },
+      "root": "projects/my-lib/ui-sdk",
+      "sourceRoot": "projects/my-lib/ui-sdk",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/my-lib/ng-package.json"
+            "project": "projects/my-lib/ui-sdk/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/my-lib/tsconfig.lib.prod.json"
+              "tsConfig": "projects/my-lib/ui-sdk/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/my-lib/tsconfig.lib.json"
+              "tsConfig": "projects/my-lib/ui-sdk/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -128,7 +140,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/my-lib/tsconfig.spec.json",
+            "tsConfig": "projects/my-lib/ui-sdk/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

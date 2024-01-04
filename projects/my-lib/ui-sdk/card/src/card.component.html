@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-img">
+        <button type="button" class="btn ellipse" (click)="toggleStar()">    
+            <i class="pi pi-star-fill" [style.color]="isStarSelected ? '#F2994A' : '#828282'"></i> 
+         </button>
+        <img id='character' class='character' src='{{pathImage}}' />
+    </div>
+    <div class="card-text-container">
+        <div class="card-title">
+            <div class="card-title-status">
+                <div  class="status" [style.background-color]="getStatusColor()"></div>
+                {{status}}
+            </div>
+            <div class="card-title-text">{{name}}</div>
+
+        </div>
+        <div class="card-location">
+            <div class="card-location-title">Last known location:</div>
+            <div class="card-location-text">{{lastLocation}}</div>
+        </div>
+        <div class="card-location">
+            <div class="card-location-title">First seen in:</div>
+            <div class="card-location-text">{{firstSeen}}</div>
+        </div>
+    </div>
+
+</div>
+ 
