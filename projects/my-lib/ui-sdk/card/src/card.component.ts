@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-card',
   standalone: true,
-  imports: [CommonModule ],
+  imports: [CommonModule  ],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
@@ -17,13 +17,19 @@ export class CardComponent {
   lastLocation = 'Story Train';
   @Input()
   firstSeen = 'Never Ricking Morty';
-  @Input() 
+  @Input()
   pathImage = '';
 
   @Input() alive: boolean = true;
-  
-  @Input() 
+
+  @Input()
   isStarSelected: boolean = false;
+  @Output()
+  openDetail = new EventEmitter<void>();
+
+  onDetail() {
+    this.openDetail.emit();
+  }
 
   toggleStar() {
     this.isStarSelected = !this.isStarSelected;

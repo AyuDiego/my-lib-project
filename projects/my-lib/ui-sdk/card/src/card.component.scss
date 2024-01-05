@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
-@import "primeicons/primeicons.css";
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700"); 
 .character {
     height: 140px;
     width: 140px;
@@ -14,12 +12,14 @@
     display: flex;
     border-radius: 10px;
     flex-direction: row;
+    padding: 0;
 
     &-text-container {
-        padding: 17px 15px 13px 15px;
+        padding: 17px 0 0 15px;
+        gap: 9px;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        flex-direction: column; 
+        text-align: start;
 
     }
 

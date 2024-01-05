@@ -1,11 +1,11 @@
 <div class="container mt-4">
     <h1>Showcase Ui - Software Development Kit</h1>
-
+    
     <h2 class="text-center my-4">Card</h2>
     <div class="row">
         <div class="col-md-4">
-            <lib-card [isStarSelected]="true"
-                pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
+            <lib-card [isStarSelected]="true" (click)="onDetail()" 
+            pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
         </div>
         <div class="col-md-4">
             <lib-card [alive]="false" pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
@@ -15,3 +15,20 @@
         </div>
     </div>
 </div>
+<p-toast></p-toast>
+<p-confirmDialog #cd>
+    <ng-template pTemplate="headless" let-message>
+        <div class="bg-light flex-column align-items-center p-5 surface-overlay border-round">
+            <div class="border-circle  inline-flex justify-content-center align-items-center  -mt-8">
+                <i class="pi pi-question text-5xl"></i>
+            </div>
+            <span class="font-bold text-2xl block mb-2 mt-4">{{ message.header }}</span>
+            <p class="mb-0">{{ message.message }}</p>
+
+            <div class="flex align-items-center gap-2 mt-4">
+                 
+                <button pButton label="Cancel" (click)="cd.reject()" class="p-button-outlined w-8rem "></button>
+            </div>
+        </div>
+    </ng-template>
+</p-confirmDialog> 
