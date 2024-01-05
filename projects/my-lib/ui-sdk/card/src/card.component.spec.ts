@@ -8,7 +8,7 @@ describe('CardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CommonModule],
+      imports: [CardComponent,CommonModule],
     });
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
@@ -35,5 +35,11 @@ describe('CardComponent', () => {
 
     component.alive = false;
     expect(component.getStatusColor()).toBe('#e74c3c');
+  });
+
+  it('should emit openDetail event on onDetail()', () => { 
+    spyOn(component.openDetail, 'emit'); 
+    component.onDetail(); 
+    expect(component.openDetail.emit).toHaveBeenCalled();
   });
 });

@@ -1,34 +1,147 @@
 <div class="container mt-4">
     <h1>Showcase Ui - Software Development Kit</h1>
-    
+
     <h2 class="text-center my-4">Card</h2>
     <div class="row">
-        <div class="col-md-4">
-            <lib-card [isStarSelected]="true" (click)="onDetail()" 
-            pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
+        <div class="col-xl-4">
+            <lib-card [isStarSelected]="true" (click)="onDetail()"
+                pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
         </div>
-        <div class="col-md-4">
+        <div class="col-xl-4">
             <lib-card [alive]="false" pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
         </div>
-        <div class="col-md-4">
+        <div class="col-xl-4">
             <lib-card pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
         </div>
+        <p-toast></p-toast>
+
+        <p-confirmDialog #cd>
+            <ng-template pTemplate="headless" let-message>
+
+                <div class="overflow-auto bg-light flex-column align-items-center surface-overlay border-round container-modal">
+                    <div class="container-profile">
+                        <div class="cover-photo">
+                            <button label="Cancel" (click)="cd.reject()" class="pi pi-times-circle"></button>
+                        </div>
+                        <div class="container-profile-img">
+    
+                            <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" class="profile">
+                            <button type="button" class="btn ellipse-modal" (click)="toggleStar()">
+                                <i class="pi pi-star-fill" [style.color]="isStarModalSelected ? '#F2994A' : '#828282'"></i>
+                            </button>
+                            <div class="profile-text">
+                                <div class="profile-status">ALIVE</div>
+                                <div class="profile-name">Beth Smith</div>
+                                <div class="profile-race">HUMAN</div>
+                            </div>
+                        </div>
+                        <div class="bg-cover-down"></div>
+
+                    </div>
+
+
+                    <div class="container-fluid  px-4 container-modal--info">
+                        <div class="  container-info ">  
+                            <div class="info py-3 col-xl-12">Información</div> 
+                            <div class="d-flex justify-content-between"> 
+                                    <div class="col-4 mini-card-info">
+                                        <div class="mini-card-info-title">
+                                            <i class="pi pi-info-circle"></i>
+                                            Gender:</div>
+                                        <div class="mini-card-info-text">Male</div>
+                                    </div> 
+                                    <div class="col-4 mini-card-info">
+                                        <div class="mini-card-info-title">
+                                            <i class="pi pi-info-circle"></i>
+                                            Origin:</div>
+                                        <div class="mini-card-info-text">Earth (C-137)</div>
+                                    </div> 
+                                    <div class="col-4 mini-card-info">
+                                        <div class="mini-card-info-title">
+                                            <i class="pi pi-info-circle"></i>
+                                            Type:
+                                        </div>
+                                        <div class="mini-card-info-text">Unknown</div>
+                                    </div>   
+                            </div>
+                        </div> 
+                        <div class="separator my-2  w-100"></div>
+
+                        <div class="info py-3 col-xl-12">Episodios</div> 
+                        <div class="container-episodes pb-3">
+                            <div class="row row-gap-2 mx-0 d-flex justify-content-between"> 
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+
+                            <div class="col-xl-4 mini-card-episodes">
+                                <div class="mini-card-episodes-title">Pilot </div>
+                                <div class="mini-card-episodes-code">S01E01</div>
+                                <div class="mini-card-episodes-date">DECEMBER 2, 2013</div>
+                            </div> 
+                           
+                        </div>  
+                        </div>
+                        <div class="separator my-2  w-100"></div>
+                        <div class="info py-3 col-xl-12">Personajes interesantes</div> 
+                        <div class="best-characters pb-4">
+
+                            <div class="row d-flex">
+                            <div class="col-xl-6">
+                                <lib-card [isStarSelected]="true" (click)="onDetail()"
+                                    pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
+                            </div>
+                            <div class="col-xl-6">
+                                <lib-card [alive]="false" pathImage="https://rickandmortyapi.com/api/character/avatar/2.jpeg"></lib-card>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="container-buttons p-4 pt-2">
+
+                        <button (click)="cd.accept()" class="btn btn-share-pj">Compartir personaje</button>
+                    </div>
+
+
+                </div>
+
+            </ng-template>
+        </p-confirmDialog>
     </div>
 </div>
-<p-toast></p-toast>
-<p-confirmDialog #cd>
-    <ng-template pTemplate="headless" let-message>
-        <div class="bg-light flex-column align-items-center p-5 surface-overlay border-round">
-            <div class="border-circle  inline-flex justify-content-center align-items-center  -mt-8">
-                <i class="pi pi-question text-5xl"></i>
-            </div>
-            <span class="font-bold text-2xl block mb-2 mt-4">{{ message.header }}</span>
-            <p class="mb-0">{{ message.message }}</p>
-
-            <div class="flex align-items-center gap-2 mt-4">
-                 
-                <button pButton label="Cancel" (click)="cd.reject()" class="p-button-outlined w-8rem "></button>
-            </div>
-        </div>
-    </ng-template>
-</p-confirmDialog> 

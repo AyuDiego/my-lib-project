@@ -19,12 +19,12 @@ const PRIME_NG_IMPORTS = [ToastModule, ConfirmDialogModule];
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+
   title = 'showcase';
+  isStarModalSelected = false;
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
   onDetail() {
-    this.confirmationService.confirm({
-      header: 'Are you sure?',
-      message: 'Please confirm to proceed.',
+    this.confirmationService.confirm({ 
       accept: () => {
           this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
       },
@@ -33,4 +33,9 @@ constructor(private confirmationService: ConfirmationService, private messageSer
       }
   });
   }
+
+  toggleStar() {
+    this.isStarModalSelected = !this.isStarModalSelected;
+  }
+
 }

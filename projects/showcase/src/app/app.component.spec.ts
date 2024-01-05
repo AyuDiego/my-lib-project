@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { AppComponent } from './app.component'; 
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 describe('AppComponent', () => {
-  beforeEach(() =>
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [AppComponent],
-    })
-  );
+      providers: [ConfirmationService, MessageService],
+    }).compileComponents();
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -22,8 +24,87 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Showcase');
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain(
+      'Showcase Ui - Software Development Kit'
+    );
+  });
+
+  it('should render the card component', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('lib-card')).toBeTruthy();
+  });
+
+  it('should toggleStar', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(app.isStarModalSelected).toBe(false);
+
+    app.toggleStar();
+    expect(app.isStarModalSelected).toBe(true);
+
+    app.toggleStar();
+    expect(app.isStarModalSelected).toBe(false);
+  });
+  it('should  openDetail', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(app.isStarModalSelected).toBe(false);
+
+    app.onDetail();
+    expect(app.isStarModalSelected).toBe(false);
+  });
+
+  it('should call confirmationService.confirm with the correct parameters', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const confirmationServiceSpy = spyOn(app['confirmationService'], 'confirm');
+    const messageServiceSpy = spyOn((app as any).messageService, 'add');
+
+    app.onDetail();
+
+    expect(confirmationServiceSpy).toHaveBeenCalledWith({
+      accept: jasmine.any(Function),
+      reject: jasmine.any(Function),
+    });
+
+    const acceptCallback =
+      confirmationServiceSpy.calls.mostRecent().args[0]?.accept;
+    if (acceptCallback) {
+      await acceptCallback();
+    }
+
+    expect(messageServiceSpy).toHaveBeenCalledWith({
+      severity: 'info',
+      summary: 'Confirmed',
+      detail: 'You have accepted',
+      life: 3000,
+    });
+
+    const rejectCallback =
+      confirmationServiceSpy.calls.mostRecent().args[0]?.reject;
+    if (rejectCallback) {
+      await rejectCallback();
+      expect(messageServiceSpy).toHaveBeenCalledWith({
+        severity: 'error',
+        summary: 'Rejected',
+        detail: 'You have rejected',
+        life: 3000,
+      });
+    }
+
+    expect(messageServiceSpy).toHaveBeenCalledWith({
+      severity: 'error',
+      summary: 'Rejected',
+      detail: 'You have rejected',
+      life: 3000,
+    });
   });
 });
