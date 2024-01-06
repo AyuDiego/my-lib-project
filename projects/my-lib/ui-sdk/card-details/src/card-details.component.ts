@@ -1,17 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { CardComponent } from 'dist/my-lib/ui-sdk/card';
+import { ConfirmDialogModule } from 'primeng/confirmdialog'; 
+import { CardComponent } from '@my-lib/ui-sdk/card/src/card.component';
+ 
 
-interface Episode {
-  id: number;
-  name: string;
-  air_date: string;
-  episode: string;
-}
 
-// import { UiSdkComponent } from 'dist/my-lib/ui-sdk';
+ 
+ 
 const PRIME_NG_IMPORTS = [ToastModule, ConfirmDialogModule];
 
 @Component({

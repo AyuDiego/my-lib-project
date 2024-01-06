@@ -4,4 +4,4 @@
 
 export * from './src/ui-sdk.service';
 export * from './src/ui-sdk.component';
-export * from './src/../card/src/card.component';
+export * from './card/src/card.component';

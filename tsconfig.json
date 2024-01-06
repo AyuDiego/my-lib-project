@@ -4,7 +4,9 @@
     "paths": { 
         "@my-lib/ui-sdk/*": ["projects/my-lib/ui-sdk/*"],
         "@my-lib/ui-sdk": ["projects/my-lib/ui-sdk"]
+        
     },
+    
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
