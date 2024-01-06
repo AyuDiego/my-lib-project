@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'lib-card',
   standalone: true,
-  imports: [CommonModule  ],
+  imports: [CommonModule],
+  exportAs:  'lib-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })

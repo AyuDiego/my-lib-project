@@ -28,7 +28,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      'Showcase Ui - Software Development Kit'
+      'Showcase Ui - Software Development Kit Library'
     );
   });
 
@@ -40,18 +40,19 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('lib-card')).toBeTruthy();
   });
 
-  it('should toggleStar', () => {
+  it('should onToggleStar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     fixture.detectChanges();
     expect(app.isStarModalSelected).toBe(false);
 
-    app.toggleStar();
+    app.onToggleStar();
     expect(app.isStarModalSelected).toBe(true);
 
-    app.toggleStar();
+    app.onToggleStar();
     expect(app.isStarModalSelected).toBe(false);
   });
+
   it('should  openDetail', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
@@ -82,9 +83,9 @@ describe('AppComponent', () => {
     }
 
     expect(messageServiceSpy).toHaveBeenCalledWith({
-      severity: 'info',
-      summary: 'Confirmed',
-      detail: 'You have accepted',
+      severity: 'success',
+      summary: 'Shared',
+      detail: 'Your content has been shared',
       life: 3000,
     });
 
@@ -93,18 +94,20 @@ describe('AppComponent', () => {
     if (rejectCallback) {
       await rejectCallback();
       expect(messageServiceSpy).toHaveBeenCalledWith({
-        severity: 'error',
-        summary: 'Rejected',
-        detail: 'You have rejected',
+        severity: 'info',
+        summary: 'Closed Details',
+        detail: 'Details Closed',
         life: 3000,
       });
     }
 
     expect(messageServiceSpy).toHaveBeenCalledWith({
-      severity: 'error',
-      summary: 'Rejected',
-      detail: 'You have rejected',
-      life: 3000,
+      severity: 'info',
+    summary: 'Closed Details',
+    detail: 'Details Closed',
+    life: 3000,
     });
   });
 });
+
+ 

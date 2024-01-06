@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiSdkComponent } from '@my-lib/ui-sdk';
 import { CardComponent } from '@my-lib/ui-sdk/card';
+import { CardDetailsComponent } from '@my-lib/ui-sdk/card-details';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -9,11 +10,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 const PRIME_NG_PROVIDERS = [ConfirmationService, MessageService];
 const PRIME_NG_IMPORTS = [ToastModule, ConfirmDialogModule];
+const LIB_COMPONENTS = [UiSdkComponent, CardComponent, CardDetailsComponent];
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,  UiSdkComponent, CardComponent, PRIME_NG_IMPORTS],
+  imports: [CommonModule, LIB_COMPONENTS, PRIME_NG_IMPORTS],
   providers: [PRIME_NG_PROVIDERS],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -22,19 +24,42 @@ export class AppComponent {
 
   title = 'showcase';
   isStarModalSelected = false;
-constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
-  onDetail() {
-    this.confirmationService.confirm({ 
-      accept: () => {
-          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-      },
-      reject: () => {
-          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-      }
-  });
+
+  get boolModalStarSelected() {
+    return this.isStarModalSelected;
   }
 
-  toggleStar() {
+  get dataEpisodes() {
+    return  [ { id: 1, name: 'Pilot', air_date: 'December 2, 2013', episode: 'S01E01' },
+    { id: 2, name: 'Lawnmower Dog', air_date: 'December 9, 2013', episode: 'S01E02' },
+    { id: 3, name: 'Anatomy Park', air_date: 'December 16, 2013', episode: 'S01E03' }
+  ];
+  }
+
+constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+
+  onDetail() {
+    this.confirmationService.confirm({
+      accept: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Shared',
+          detail: 'Your content has been shared',
+          life: 3000,
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Closed Details',
+          detail: 'Details Closed',
+          life: 3000,
+        });
+      },
+    });
+  }
+
+  onToggleStar() {
     this.isStarModalSelected = !this.isStarModalSelected;
   }
 
