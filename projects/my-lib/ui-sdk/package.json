@@ -1,6 +1,6 @@
 {
   "name": "@ayudiego/ui-sdk",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "Diego Del Barrio <d.del.barrio.ayuso@gmail.com>",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
@@ -9,5 +9,7 @@
   "dependencies": { 
     "tslib": "^2.3.0"
   },
+  "main": "./bundles/ui-sdk.umd.js",
+  "module": "./esm2015/ui-sdk.js",
   "sideEffects": false
 }
