@@ -2,9 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog'; 
-import { CardComponent } from '@my-lib/ui-sdk/card/src/card.component';
+import { CardComponent } from '../card/card.component';
  
-
 
  
  

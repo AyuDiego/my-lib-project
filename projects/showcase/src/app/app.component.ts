@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UiSdkComponent } from '@my-lib/ui-sdk';
-import { CardComponent } from '@my-lib/ui-sdk/card';
-import { CardDetailsComponent } from '@my-lib/ui-sdk/card-details';
+import { CardComponent, CardDetailsComponent, UiSdkComponent } from '@my-lib/ui-sdk'; 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
