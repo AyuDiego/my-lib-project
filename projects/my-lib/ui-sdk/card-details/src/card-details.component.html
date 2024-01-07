@@ -1,10 +1,10 @@
 @if (ifToast) {
 <p-toast></p-toast>
 }
-<p-confirmDialog #cd>
+<p-confirmDialog #cd maskStyleClass="overflow-auto">
     <ng-template pTemplate="headless" let-message>
 
-        <div class="overflow-auto bg-light flex-column align-items-center surface-overlay border-round container-modal">
+        <div class=" bg-light flex-column align-items-center surface-overlay border-round container-modal">
             <div class="container-profile">
                 <div class="cover-photo">
                     <button label="Cancel" (click)="cd.reject()" class="pi pi-times-circle"></button>
