@@ -1,6 +1,6 @@
 {
   "name": "@ayudiego/ui-sdk",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "author": "Diego Del Barrio <d.del.barrio.ayuso@gmail.com>",
   "peerDependencies": {
     "@angular/common": "^17.0.0",

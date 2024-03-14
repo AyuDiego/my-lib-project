@@ -1,6 +1,6 @@
 {
   "name": "my-lib-project",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "scripts": {
     "ng": "ng",
     "start": "npm-run-all clean --parallel lib:watch showcase:start-waiton",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.9",
-    "@angular/cli": "^17.0.9",
+    "@angular/cli": "^17.3.0",
     "@angular/compiler-cli": "^17.0.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
